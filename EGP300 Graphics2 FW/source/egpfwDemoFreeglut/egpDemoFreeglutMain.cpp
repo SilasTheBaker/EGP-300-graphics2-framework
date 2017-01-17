@@ -385,13 +385,13 @@ void renderGameState()
 		//	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 			// draw 3D primitives with immediate mode (terrible)
-		//	egpDrawSphere8x6Immediate(viewProjMat.m, 0, 1.0f, 0.0f, 0.0f);
-		//	egpDrawSphere32x24Immediate(viewProjMat.m, 0, 0.0f, 1.0f, 0.0f);
+		//	egpDrawSphere8x6Immediate(viewProjMat.m, 0, 1.0f, 0.0f, 0.0f);  //bad sphere
+		//	egpDrawSphere32x24Immediate(viewProjMat.m, 0, 0.0f, 1.0f, 0.0f); //good sphere
 		//	egpDrawCubeImmediate(viewProjMat.m, 0, 1, 0.0f, 0.0f, 1.0f);
 		//	egpDrawWireCubeImmediate(viewProjMat.m, 0, 1, 1.0f, 0.5f, 0.0f);
 
 			// draw 3D primitives with retained mode (VAOs, proper)
-		//	egpActivateVAO(vao + sphere8x6VAO);
+		//	egpActivateVAO(&vao[sphere8x6VAO]);
 		//	egpActivateVAO(vao + sphere32x24VAO);
 		//	egpActivateVAO(vao + cubeVAO);
 		//	egpActivateVAO(vao + cubeWireVAO);
@@ -548,7 +548,13 @@ int initGL(int argc, char **argv)
 		// set states
 		// backface culling
 		glEnable(GL_CULL_FACE);
-		glCullFace(GL_BACK);
+		//glDisable(GL_CULL_FACE); //Draw both sides
+
+
+		//glCullFace(GL_BACK); //normal
+		//glCullFace(GL_FRONT); //flip
+
+
 
 		// depth testing
 		glEnable(GL_DEPTH_TEST);
