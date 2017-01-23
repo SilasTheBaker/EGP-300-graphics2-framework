@@ -404,9 +404,10 @@ void renderGameState()
 	// ****
 	// TEST YOUR SHAPES
 	{
-		egpfwDrawColoredTriangleImmediate(viewProjMat.m, 0);
-	//	egpfwDrawColoredUnitQuadImmediate(viewProjMat.m, 0);
-	//	egpfwDrawTexturedUnitQuadImmediate(viewProjMat.m, 0);
+		//egpfwDrawColoredTriangleImmediate(viewProjMat.m, 0);
+		egpfwDrawColoredUnitQuadImmediate(viewProjMat.m, 0);
+		//egpfwDrawColoredUnitPentImmediate(viewProjMat.m, 0);
+	    //egpfwDrawTexturedUnitQuadImmediate(viewProjMat.m, 0);
 	}
 
 

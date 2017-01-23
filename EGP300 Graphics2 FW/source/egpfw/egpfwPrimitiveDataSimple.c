@@ -71,7 +71,6 @@ void egpfwDrawColoredTriangleImmediate(const float *mvp, const int mvpLoc)
 	glVertex3f(0.0f, 0.0f, 1.0f);
 
 
-
 	glEnd();
 
 	glPopMatrix();
@@ -85,7 +84,57 @@ void egpfwDrawColoredTriangleImmediate(const float *mvp, const int mvpLoc)
 void egpfwDrawColoredUnitQuadImmediate(const float *mvp, const int mvpLoc)
 {
 	glPushMatrix();
-	//...
+	
+	glLoadMatrixf(mvp);
+
+	glBegin(GL_TRIANGLE_STRIP);
+
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+
+	glColor3f(1.0f, 0.0f, 1.0f);
+	glVertex3f(1.0f, 0.0f, 0.0f);
+
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(0.0f, 1.0f, 0.0f);
+
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(1.0f, 1.0f, 0.0f);
+
+	glEnd();
+
+	glPopMatrix();
+}
+
+// ****
+// draw colored unit quad using immediate mode
+// should draw quad as a TRIANGLE STRIP (quad is deprecated)
+// **WARNING: DO NOT EVER USE IMMEDIATE MODE FOR FULL-SCALE MODELS
+void egpfwDrawColoredUnitPentImmediate(const float *mvp, const int mvpLoc)
+{
+	glPushMatrix();
+
+	glLoadMatrixf(mvp);
+
+	glBegin(GL_TRIANGLE_STRIP);
+
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+
+	glColor3f(1.0f, 0.0f, 1.0f);
+	glVertex3f(1.0f, 0.0f, 0.0f);
+
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(0.0f, 1.0f, 0.0f);
+
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(1.0f, 1.0f, 0.0f);
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+	glVertex3f(0.5f, 1.5f, 0.0f);
+
+	glEnd();
+
 	glPopMatrix();
 }
 

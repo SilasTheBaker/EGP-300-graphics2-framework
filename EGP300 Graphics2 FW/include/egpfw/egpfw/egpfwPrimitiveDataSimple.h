@@ -28,6 +28,7 @@ extern "C"
 	// draw colored unit quad using immediate mode
 	// should draw quad as a TRIANGLE STRIP (quad is deprecated)
 	void egpfwDrawColoredUnitQuadImmediate(const float *mvp, const int mvpLoc);
+	void egpfwDrawColoredUnitPentImmediate(const float *mvp, const int mvpLoc);
 
 	// draw unit quad with texture coordinates using immediate mode
 	// texture coordinates have 2 elements
