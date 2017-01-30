@@ -113,6 +113,39 @@ struct Vector3 matrix4X4TimesVector3(const struct Matrix4x4* transform, const st
 
 struct Matrix4x4 inverseMatrix4x4(const struct Matrix4x4* transform)
 {
+	struct Matrix3x3 invRot = getRotationFrom4x4(transform);
+	invRot = inverseMatrix3x3(&invRot);
 
+	struct Vector3 invTranslation = getVector3From4x4(transform);
+	invTranslation = multiplyByVector3(&invRot, &invTranslation);
+
+	struct Matrix4x4 result = makeTransformFromTransformAndVector3(&invTranslation, &invRot);
+	return result;
+}
+
+struct Matrix3x3 getRotationFrom4x4(const struct Matrix4x4* transform)
+{
+	struct Matrix3x3 rotationMatrix;
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			rotationMatrix.elements[i][j] = transform->elements[i][j];
+		}
+	}
+
+	return rotationMatrix;
+}
+
+struct Vector3 getVector3From4x4(const struct Matrix4x4* transform)
+{
+	struct Vector3 translation;
+
+	translation.x = transform->elements[0][3];
+	translation.y = transform->elements[1][3];
+	translation.z = transform->elements[2][3];
+
+	return translation;
 }
 

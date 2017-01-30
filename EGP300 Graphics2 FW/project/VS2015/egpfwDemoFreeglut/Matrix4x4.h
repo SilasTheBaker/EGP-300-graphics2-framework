@@ -32,6 +32,8 @@ extern "C"
 	struct Matrix4x4 uniformScaleMatrix4x4(GLfloat scale);
 	struct Matrix4x4 inverseMatrix4x4(const struct Matrix4x4* transform);
 	struct Matrix4x4 identityMatrix4X4();
+	struct Matrix3x3 getRotationFrom4x4(const struct Matrix4x4* transform);
+	struct Vector3 getVector3From4x4(const struct Matrix4x4* transform);
 	void zeroOutMatrix4x4(struct Matrix4x4* matrix);
 
 
