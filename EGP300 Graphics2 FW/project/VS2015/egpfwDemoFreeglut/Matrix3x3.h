@@ -35,6 +35,8 @@ extern "C"
 	struct Matrix3x3 uniformScaleMatrix3x3(GLfloat scale);
 	struct Matrix3x3 identityMatrix3X3();
 	struct Matrix3x3 concatenateMatrix3X3(const struct Matrix3x3* left, const struct Matrix3x3* right);
+	struct Matrix3x3 eulerXYZRotationMatrix(const GLfloat xRot, const GLfloat yRot, const GLfloat zRot);
+	struct Matrix3x3 eulerZYXRotationMatrix(const GLfloat zRot, const GLfloat yRot, const GLfloat xRot);
 	struct Vector3 eulerXYZRotation(const struct Vector3* vector, const GLfloat xRot, const GLfloat yRot, const GLfloat zRot);
 	struct Vector3 eulerZYXRotation(const struct Vector3* vector, const GLfloat zRot, const GLfloat yRot, const GLfloat xRot);
 	struct Vector3 multiplyByVector3(const struct Matrix3x3* matrix, const struct Vector3* vec);

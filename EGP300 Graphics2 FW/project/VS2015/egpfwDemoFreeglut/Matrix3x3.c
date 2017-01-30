@@ -167,3 +167,23 @@ struct Vector3 eulerZYXRotation(const struct Vector3* vector, const GLfloat zRot
 
 	return product;
 }
+
+struct Matrix3x3 eulerXYZRotationMatrix(const GLfloat xRot, const GLfloat yRot, const GLfloat zRot)
+{
+	struct Matrix3x3 xRotation = xRotationMatrix3x3(xRot);
+	struct Matrix3x3 yRotation = yRotationMatrix3x3(yRot);
+	struct Matrix3x3 zRotation = zRotationMatrix3x3(zRot);
+
+	struct Matrix3x3 zyRot = concatenateMatrix3X3(&yRotation, &zRotation);
+	return concatenateMatrix3X3(&xRotation, &zyRot);
+}
+
+struct Matrix3x3 eulerZYXRotationMatrix(const GLfloat zRot, const GLfloat yRot, const GLfloat xRot)
+{
+	struct Matrix3x3 xRotation = xRotationMatrix3x3(xRot);
+	struct Matrix3x3 yRotation = yRotationMatrix3x3(yRot);
+	struct Matrix3x3 zRotation = zRotationMatrix3x3(zRot);
+
+	struct Matrix3x3 xyRot = concatenateMatrix3X3(&yRotation, &xRotation);
+	return concatenateMatrix3X3(&zRotation, &xyRot);
+}
