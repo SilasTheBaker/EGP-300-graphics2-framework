@@ -25,6 +25,8 @@ extern "C"
 	GLfloat sqrMagnitude(const struct Vector3* vec);
 	GLfloat dotProduct(const struct Vector3* left, const struct Vector3* right);
 	struct Vector3 crossProduct(const struct Vector3* left, const struct Vector3* right);
+	void convertVector3ToArray(const struct Vector3* vec, GLfloat* arr);
+	struct Vector3 convertArrayToVector3(const GLfloat* arr);
 
 
 #ifdef __cplusplus

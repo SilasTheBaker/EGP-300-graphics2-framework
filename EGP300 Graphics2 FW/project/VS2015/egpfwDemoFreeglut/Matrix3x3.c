@@ -29,9 +29,11 @@ struct Matrix3x3 transposeMatrix3x3(const struct Matrix3x3* matrix)
 	return transpose;
 }
 
-struct Matrix3x3 inverseMatrix3x3(const struct Matrix3x3* matrix)
+//Only works on rotation matricies
+struct Matrix3x3 inverseMatrix3x3(const struct Matrix3x3* rotationMatrix)
 {
-
+	//I guess????
+	return transposeMatrix3x3(rotationMatrix);
 }
 
 struct Matrix3x3 uniformScaleMatrix3x3(GLfloat scale)
@@ -63,7 +65,7 @@ struct Matrix3x3 concatenateMatrix3X3(const struct Matrix3x3* left, const struct
 		{
 			for (int k = 0; k < 3; ++k)
 			{
-				result.elements[i][j] = left->elements[i][k] * right->elements[k][j];
+				result.elements[i][j] += left->elements[i][k] * right->elements[k][j];
 			}
 		}
 	}
@@ -136,18 +138,32 @@ struct Matrix3x3 zRotationMatrix3x3(const GLfloat zRot)
 	return rotationMatrix;
 }
 
-struct Matrix3x3 eulerXYZRotation(const struct Vector3* Vector3, const GLfloat xRot, const GLfloat yRot, const GLfloat zRot)
+struct Vector3 eulerXYZRotation(const struct Vector3* vector, const GLfloat xRot, const GLfloat yRot, const GLfloat zRot)
 {
-	struct Matrix3x3 product;
+	struct Vector3 product;
 
 	struct Matrix3x3 xRotation = xRotationMatrix3x3(xRot);
 	struct Matrix3x3 yRotation = yRotationMatrix3x3(yRot);
 	struct Matrix3x3 zRotation = zRotationMatrix3x3(zRot);
 
-	product = concatenateMatrix3X3(matrix, concatenateMatrix3X3())
+	struct Matrix3x3 zyRot = concatenateMatrix3X3(&yRotation, &zRotation);
+	struct Matrix3x3 xyzRot = concatenateMatrix3X3(&xRotation, &zyRot);
+	product = multiplyByVector3(&xyzRot, vector);
+
+	return product;
 }
 
-struct Matrix3x3 eulerZYXRotation(const struct Matrix3x3* matrix, const GLfloat zRot, const GLfloat yRot, const GLfloat xRot)
+struct Vector3 eulerZYXRotation(const struct Vector3* vector, const GLfloat zRot, const GLfloat yRot, const GLfloat xRot)
 {
+	struct Vector3 product;
 
+	struct Matrix3x3 xRotation = xRotationMatrix3x3(xRot);
+	struct Matrix3x3 yRotation = yRotationMatrix3x3(yRot);
+	struct Matrix3x3 zRotation = zRotationMatrix3x3(zRot);
+
+	struct Matrix3x3 xyRot = concatenateMatrix3X3(&yRotation, &xRotation);
+	struct Matrix3x3 xyzRot = concatenateMatrix3X3(&zRotation, &xyRot);
+	product = multiplyByVector3(&xyzRot, vector);
+
+	return product;
 }

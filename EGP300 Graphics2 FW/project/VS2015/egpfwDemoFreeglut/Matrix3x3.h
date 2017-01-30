@@ -32,14 +32,13 @@ extern "C"
 	struct Matrix3x3 xRotationMatrix3x3(const GLfloat xRot);
 	struct Matrix3x3 yRotationMatrix3x3(const GLfloat yRot);
 	struct Matrix3x3 zRotationMatrix3x3(const GLfloat zRot);
-	struct Matrix3x3 eulerXYZRotation(const struct Matrix3x3* matrix, const GLfloat xRot, const GLfloat yRot, const GLfloat zRot);
-	struct Matrix3x3 eulerZYXRotation(const struct Matrix3x3* matrix, const GLfloat zRot, const GLfloat yRot, const GLfloat xRot);
 	struct Matrix3x3 uniformScaleMatrix3x3(GLfloat scale);
 	struct Matrix3x3 identityMatrix3X3();
 	struct Matrix3x3 concatenateMatrix3X3(const struct Matrix3x3* left, const struct Matrix3x3* right);
+	struct Vector3 eulerXYZRotation(const struct Vector3* vector, const GLfloat xRot, const GLfloat yRot, const GLfloat zRot);
+	struct Vector3 eulerZYXRotation(const struct Vector3* vector, const GLfloat zRot, const GLfloat yRot, const GLfloat xRot);
+	struct Vector3 multiplyByVector3(const struct Matrix3x3* matrix, const struct Vector3* vec);
 	void copyMatrix(struct Matrix3x3* dest, const struct Matrix3x3* source);
-	void convertVector3ToArray(const struct Vector3* vec, GLfloat* arr);
-	struct Vector3 convertArrayToVector3(const GLfloat* arr);
 	void zeroOutMatrix3x3(struct Matrix3x3* matrix);
 
 #ifdef __cplusplus
