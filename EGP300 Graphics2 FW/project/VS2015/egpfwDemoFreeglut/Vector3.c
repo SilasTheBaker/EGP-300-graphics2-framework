@@ -38,10 +38,10 @@ struct Vector3 crossProduct(const struct Vector3* left, const struct Vector3* ri
 
 struct Vector3 lerp(const struct Vector3* start, const struct Vector3* end, float t)
 {
+	struct Vector3 result;
+	
 	if (t < 0) t = 0;
 	if (t > 1) t = 1;
-
-	struct Vector3 result;
 
 	result.x = start->x * (1 - t) + end->x * t;
 	result.x = start->y * (1 - t) + end->y * t;
@@ -81,4 +81,22 @@ struct Vector3 addVector3(const struct Vector3* left, const struct Vector3* righ
 	result.z = left->z + right->z;
 
 	return result;
+}
+
+void convertVector3ToArray(const struct Vector3* vec, GLfloat* arr)
+{
+	arr[0] = vec->x;
+	arr[1] = vec->y;
+	arr[2] = vec->z;
+}
+
+struct Vector3 convertArrayToVector3(const GLfloat* arr)
+{
+	struct Vector3 vec;
+
+	vec.x = arr[0];
+	vec.y = arr[1];
+	vec.z = arr[2];
+
+	return vec;
 }
